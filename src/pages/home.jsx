@@ -5,7 +5,7 @@ export default function Home() {
   return (
     <section className="home-page">
       <div className="home-inner">
-        <p className="page-tag">CS 499 · Capstone ePortfolio</p>
+        <p className="page-tag">Portfolio</p>
 
         <h1 className="home-title">
           Quang Drazy<br />

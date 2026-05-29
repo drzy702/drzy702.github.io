@@ -4,8 +4,8 @@ export default function About() {
       <p className="page-tag">About</p>
 
       <h1 className="page-title">
-        Professional<br />
-        <em>Self-Assessment</em>
+        About<br />
+        <em>Me</em>
       </h1>
 
       <div className="page-divider" />
