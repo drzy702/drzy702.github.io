@@ -1,0 +1,100 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap');
+
+/* ── Design tokens ───────────────────────────────── */
+:root {
+  --bg:          #0d0d0f;
+  --bg-surface:  #141416;
+  --bg-raised:   #1a1a1e;
+  --border:      #2a2a2e;
+  --border-dim:  #1e1e22;
+  --text:        #e8e6e1;
+  --text-muted:  #7a7a8a;
+  --text-dim:    #4a4a5a;
+  --accent:      #c084fc;
+  --font-sans:   'DM Sans', sans-serif;
+  --font-mono:   'DM Mono', monospace;
+}
+
+/* ── Reset ───────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-sans);
+  background: var(--bg);
+  color: var(--text);
+  font-size: 16px;
+  line-height: 1.7;
+  font-weight: 300;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+}
+
+h1, h2, h3, h4 {
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+}
+
+a { color: inherit; }
+
+img { max-width: 100%; display: block; }
+
+/* ── Layout ──────────────────────────────────────── */
+.site-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.page-content {
+  flex: 1;
+}
+
+/* ── Shared page styles ──────────────────────────── */
+.page {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 4rem 2rem 6rem;
+}
+
+.page-tag {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-dim);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+}
+
+.page-title {
+  font-size: clamp(2rem, 5vw, 3.25rem);
+  font-weight: 300;
+  color: var(--text);
+  margin-bottom: 1.5rem;
+}
+
+.page-title em {
+  font-style: normal;
+  color: var(--text-muted);
+}
+
+.page-divider {
+  height: 0.5px;
+  background: var(--border-dim);
+  margin: 3rem 0;
+}
+
+.page-body {
+  font-size: 15px;
+  color: var(--text-muted);
+  line-height: 1.8;
+  max-width: 600px;
+}
+
+.page-body p + p { margin-top: 1.25rem; }
+
+/* ── Utility ─────────────────────────────────────── */
+.mono { font-family: var(--font-mono); }
+.muted { color: var(--text-muted); }
