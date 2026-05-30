@@ -4,10 +4,10 @@ function TravlrProject() {
       <h2>Travlr Getaways Full-Stack Web Application</h2>
 
       <p>
-        Travlr Getaways is a full-stack travel booking application built with
-        MongoDB, Express, Angular, Node.js, and Handlebars. I enhanced the
-        application by adding authentication, protected routes, search and
-        filtering tools, and a user booking system.
+        A full-stack travel booking application built with client-side search, 
+        filtering, sorting, JWT authentication, and an admin dashboard for managing 
+        trips and bookings. This project helped me develop skills in database-driven 
+        applications, secure user access, and full-stack architecture.
       </p>
 
       <h3>Key Features</h3>

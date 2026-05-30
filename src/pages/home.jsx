@@ -13,9 +13,11 @@ export default function Home() {
         </h1>
 
         <p className="home-sub">
-          Full stack developer with a focus on software design, algorithm
-          efficiency, and secure database integration. Building with the
-          MEAN stack — MongoDB, Express, Angular, Node.js.
+           Full-stack developer and business owner with experience in web development, 
+           database design, Linux server administration, and business operations. 
+           I combine my computer science background with hands-on experience running ScoopersLV, 
+           managing real workflows, and setting up production-style web environments using Apache, 
+           MariaDB, and Postfix.
         </p>
 
         <div className="home-actions">
@@ -26,7 +28,8 @@ export default function Home() {
         <div className="home-divider" />
 
         <div className="home-stack">
-          {['MongoDB', 'Express', 'Angular', 'Node.js', 'JWT', 'REST APIs'].map(tech => (
+          {['Full-Stack Development', 'Business Operations', 'Linux Server Administration',
+            'Apache', 'MariaDB', 'Postfix', 'MongoDB', 'Express', 'Angular', 'Node.js', 'JWT', 'REST APIs'].map(tech => (
             <span key={tech} className="tech-tag">{tech}</span>
           ))}
         </div>
