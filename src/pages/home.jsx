@@ -1,7 +1,27 @@
+import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
+import { doc, onSnapshot } from 'firebase/firestore'
+import { db } from '../firebase'
 import './home.css'
 
+const DEFAULT_BIO = `Full-stack developer and business owner with experience in web development, database design, Linux server administration, and business operations. I combine my computer science background with hands-on experience running ScoopersLV, managing real workflows, and setting up production-style web environments using Apache, MariaDB, and Postfix.`
+
+const DEFAULT_TAGS = ['Full-Stack Development', 'Business Operations', 'Linux Server Administration',
+  'Apache', 'MariaDB', 'Postfix', 'MongoDB', 'Express', 'Angular', 'Node.js', 'JWT', 'REST APIs']
+
 export default function Home() {
+  const [bio, setBio] = useState(DEFAULT_BIO)
+  const [tags, setTags] = useState(DEFAULT_TAGS)
+
+  useEffect(() => {
+    return onSnapshot(doc(db, 'pages', 'home'), (snap) => {
+      if (!snap.exists()) return
+      const d = snap.data()
+      if (d.bio) setBio(d.bio)
+      if (d.tags?.length) setTags(d.tags)
+    })
+  }, [])
+
   return (
     <section className="home-page">
       <div className="home-inner">
@@ -12,13 +32,7 @@ export default function Home() {
           <em>Nguyen</em>
         </h1>
 
-        <p className="home-sub">
-           Full-stack developer and business owner with experience in web development, 
-           database design, Linux server administration, and business operations. 
-           I combine my computer science background with hands-on experience running ScoopersLV, 
-           managing real workflows, and setting up production-style web environments using Apache, 
-           MariaDB, and Postfix.
-        </p>
+        <p className="home-sub">{bio}</p>
 
         <div className="home-actions">
           <Link to="/projects" className="btn btn-primary">View Projects</Link>
@@ -28,8 +42,7 @@ export default function Home() {
         <div className="home-divider" />
 
         <div className="home-stack">
-          {['Full-Stack Development', 'Business Operations', 'Linux Server Administration',
-            'Apache', 'MariaDB', 'Postfix', 'MongoDB', 'Express', 'Angular', 'Node.js', 'JWT', 'REST APIs'].map(tech => (
+          {tags.map((tech) => (
             <span key={tech} className="tech-tag">{tech}</span>
           ))}
         </div>

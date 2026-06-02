@@ -1,6 +1,32 @@
+import { useState, useEffect } from 'react'
+import { doc, onSnapshot } from 'firebase/firestore'
+import { db } from '../firebase'
 import './resume.css'
 
+const DEFAULT_SKILLS = [
+  { category: 'Frontend', items: ['Angular', 'HTML', 'CSS', 'JavaScript'] },
+  { category: 'Backend', items: ['Node.js', 'Express', 'REST APIs'] },
+  { category: 'Database', items: ['MongoDB', 'Mongoose', 'NoSQL'] },
+  { category: 'Security', items: ['JWT', 'Authentication', 'Authorization'] },
+]
+
+const DEFAULT_EDUCATION = [
+  { title: 'B.S. Computer Science', date: 'In Progress', institution: 'Southern New Hampshire University' },
+]
+
 export default function Resume() {
+  const [skills, setSkills] = useState(DEFAULT_SKILLS)
+  const [education, setEducation] = useState(DEFAULT_EDUCATION)
+
+  useEffect(() => {
+    return onSnapshot(doc(db, 'pages', 'resume'), (snap) => {
+      if (!snap.exists()) return
+      const d = snap.data()
+      if (d.skills?.length) setSkills(d.skills)
+      if (d.education?.length) setEducation(d.education)
+    })
+  }, [])
+
   return (
     <section className="page">
       <p className="page-tag">Resume</p>
@@ -12,16 +38,10 @@ export default function Resume() {
 
       <div className="page-divider" />
 
-      {/* Skills */}
       <div className="resume-section">
         <h2 className="resume-section-title">Skills</h2>
         <div className="skills-grid">
-          {[
-            { category: 'Frontend', items: ['Angular', 'HTML', 'CSS', 'JavaScript'] },
-            { category: 'Backend', items: ['Node.js', 'Express', 'REST APIs'] },
-            { category: 'Database', items: ['MongoDB', 'Mongoose', 'NoSQL'] },
-            { category: 'Security', items: ['JWT', 'Authentication', 'Authorization'] },
-          ].map(({ category, items }) => (
+          {skills.map(({ category, items }) => (
             <div key={category} className="skill-group">
               <p className="skill-category">{category}</p>
               <div className="skill-items">
@@ -36,26 +56,22 @@ export default function Resume() {
 
       <div className="page-divider" />
 
-      {/* Education */}
       <div className="resume-section">
         <h2 className="resume-section-title">Education</h2>
-        <div className="resume-entry">
-          <div className="resume-entry-head">
-            <span className="resume-entry-title">B.S. Computer Science</span>
-            <span className="resume-entry-date mono muted">In Progress</span>
+        {education.map((e, i) => (
+          <div key={i} className="resume-entry">
+            <div className="resume-entry-head">
+              <span className="resume-entry-title">{e.title}</span>
+              <span className="resume-entry-date mono muted">{e.date}</span>
+            </div>
+            <p className="resume-entry-sub muted">{e.institution}</p>
           </div>
-          <p className="resume-entry-sub muted">Southern New Hampshire University</p>
-        </div>
+        ))}
       </div>
 
       <div className="page-divider" />
 
-      {/* Download CTA */}
-      <a
-        href="/resume.pdf"
-        className="resume-download"
-        download
-      >
+      <a href="/resume.pdf" className="resume-download" download>
         Download PDF Resume →
       </a>
     </section>
