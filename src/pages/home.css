@@ -59,7 +59,7 @@
   color: var(--bg);
   border: 0.5px solid var(--text);
 }
-.btn-primary:hover { background: #c8c6c1; border-color: #c8c6c1; }
+.btn-primary:hover { background: #cccccc; border-color: #cccccc; }
 
 .btn-ghost {
   background: transparent;
