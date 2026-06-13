@@ -37,6 +37,28 @@
   letter-spacing: 0.04em;
 }
 
+.resume-about {
+  font-size: 15px;
+  line-height: 1.8;
+  color: var(--text-muted);
+  max-width: 680px;
+}
+
+.resume-bullets {
+  margin: 0.75rem 0 0 1rem;
+  padding: 0;
+  list-style: disc;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.resume-bullets li {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--text-muted);
+}
+
 .resume-entry { margin-bottom: 1.5rem; }
 
 .resume-entry-head {
